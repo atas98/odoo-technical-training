@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class Session(models.Model):
@@ -17,3 +18,16 @@ class Session(models.Model):
                                 required=True,
                                 ondelete='cascade')
     attendee_ids = fields.Many2many('openacademy.partner')
+
+    seats = fields.Integer()
+    taken_seats = fields.Float(compute='_compute_taken_seats')
+
+    @api.depends('attendee_ids', 'seats')
+    def _compute_taken_seats(self):
+        for record in self:
+            record.taken_seats = 100 * len(record.attendee_ids) / record.seats
+
+    @api.constrains('taken_seats')
+    def _check_taken_seats(self):
+        if self.taken_seats > 100:
+            raise ValidationError('Too many attendees')
