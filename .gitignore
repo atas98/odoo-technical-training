@@ -1,3 +1,6 @@
+# vscode cache
+.vscode
+
 # sphinx build directories
 _build/
 
