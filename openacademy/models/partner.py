@@ -7,4 +7,4 @@ class Partner(models.Model):
 
     name = fields.Char()
     instructor = fields.Boolean()
-    responsible_id = fields.Many2many('openacademy.session', readonly=True)
+    session_ids = fields.Many2many('openacademy.session', readonly=True)
