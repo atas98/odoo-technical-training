@@ -1,0 +1,39 @@
+<odoo>
+  <data>
+    <!-- actions opening views on models -->
+    <record id="openacademy_courses_act" model="ir.actions.act_window">
+      <field name="name">Courses</field>
+      <field name="res_model">openacademy.course</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="course_form_view">
+      <field name="name">course.form</field>
+      <field name="model">openacademy.course</field>
+      <field name="arch" type="xml">
+        <form string="Add course">
+          <sheet>
+            <group>
+              <field name="name" string="Title" />
+              <field name="responsible_id" string="Responsible" />
+              <field name="description" string="Description" />
+              <field name="level" string="Level" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Tree view -->
+    <record model="ir.ui.view" id="course_tree_view">
+      <field name="name">course.tree</field>
+      <field name="model">openacademy.course</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="responsible_id" />
+        </tree>
+      </field>
+    </record>
+  </data>
+</odoo>

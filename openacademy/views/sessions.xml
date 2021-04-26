@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="openacademy_sessions_act">
+      <field name="name">Sessions</field>
+      <field name="res_model">openacademy.session</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Form view -->
+    <record model="ir.ui.view" id="session_form_view">
+      <field name="name">session.form</field>
+      <field name="model">openacademy.session</field>
+      <field name="arch" type="xml">
+        <form string="Add session">
+          <group string="General">
+            <field name="name" string="Name" />
+            <field name="state" string="State" />
+            <field name="instructor_id" string="Instructor" />
+            <field name="course_id" string="Course" />
+            <field name="seats" string="Seats" />
+          </group>
+
+          <separator />
+
+          <notebook>
+            <page string="Date">
+              <group>
+                <field name="start_date" string="Start Date" />
+                <field name="duration" string="Duration" />
+              </group>
+            </page>
+
+            <page string="Attendees">
+              <field name="attendee_ids" />
+            </page>
+          </notebook>
+        </form>
+      </field>
+    </record>
+
+    <!-- Tree view -->
+    <record model="ir.ui.view" id="session_tree_view">
+      <field name="name">session.tree</field>
+      <field name="model">openacademy.session</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="state" />
+          <field name="instructor_id" />
+          <field name="start_date" />
+          <field name="end_date" />
+          <field name="course_id" />
+          <field name="seats" />
+          <field name="taken_seats" widget="progressbar"/>
+        </tree>
+      </field>
+    </record>
+  </data>
+</odoo>

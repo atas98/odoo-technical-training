@@ -1,11 +1,11 @@
 <odoo>
   <data>
     <!-- actions opening views on models -->
-    <record model="ir.actions.act_window" id="openacademy_courses_act">
+    <!-- <record model="ir.actions.act_window" id="openacademy_courses_act">
       <field name="name">Courses</field>
       <field name="res_model">openacademy.course</field>
       <field name="view_mode">tree,form</field>
-    </record>
+    </record> -->
 
     <record model="ir.actions.act_window" id="openacademy_sessions_act">
       <field name="name">Sessions</field>

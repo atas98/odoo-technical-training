@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <!-- Top menu item -->
-        <menuitem name="Open Academy" id="openacademy_menu_root"/>
+        <menuitem name="Open Academy" id="openacademy_menu_root" web_icon="openacademy,static/description/icon.png" />
 
         <!-- menu categories -->
         <menuitem name="Courses" id="openacademy_menu_courses" parent="openacademy_menu_root"/>
