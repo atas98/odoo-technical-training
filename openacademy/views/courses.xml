@@ -13,6 +13,15 @@
       <field name="arch" type="xml">
         <form string="Add course">
           <sheet>
+            <div class="button_box">
+              <button class="oe_stat_button" type="object" name="open_attendees" icon="fa-users">
+                <div class="o_stat_info">
+                  <field name="attendee_count" class="o_stat_value" />
+                  <span class="o_stat_text" attrs="{'invisible': [('attendee_count', '&lt;', 2)]}"> Attendees</span>
+                  <span class="o_stat_text" attrs="{'invisible': [('attendee_count', '&gt;', 1)]}"> Attendee</span>
+                </div>
+              </button>
+            </div>
             <group>
               <field name="name" string="Title" />
               <field name="responsible_id" string="Responsible" />

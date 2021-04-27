@@ -7,10 +7,10 @@
       <field name="view_mode">tree,form</field>
     </record> -->
 
-    <record model="ir.actions.act_window" id="openacademy_sessions_act">
+    <!-- <record model="ir.actions.act_window" id="openacademy_sessions_act">
       <field name="name">Sessions</field>
       <field name="res_model">openacademy.session</field>
       <field name="view_mode">tree,form</field>
-    </record>
+    </record> -->
   </data>
 </odoo>

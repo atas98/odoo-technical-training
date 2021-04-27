@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <!-- Top menu item -->
-        <menuitem name="Open Academy" id="openacademy_menu_root" web_icon="openacademy,static/description/icon.png" />
+  <data>
+    <!-- Top menu item -->
+    <menuitem name="Open Academy" id="openacademy_menu_root" web_icon="openacademy,static/description/icon.png" />
 
-        <!-- menu categories -->
-        <menuitem name="Courses" id="openacademy_menu_courses" parent="openacademy_menu_root"/>
+    <!-- menu categories -->
+    <menuitem name="Courses" id="openacademy_menu_courses" parent="openacademy_menu_root" />
+    <menuitem name="Contacts" id="openacademy_menu_contacts" parent="openacademy_menu_root" action="openacademy_contacts_act" />
 
-        <!-- actions -->
-        <menuitem name="Courses" id="courses_menu_courses" parent="openacademy_menu_courses" action="openacademy_courses_act"/>
-        <menuitem name="Sessions" id="openacademy" parent="openacademy_menu_courses" action="openacademy_sessions_act"/>
-    </data>
+    <!-- actions -->
+    <menuitem name="Courses" id="courses_menu_courses" parent="openacademy_menu_courses" action="openacademy_courses_act" />
+    <menuitem name="Sessions" id="courses_menu_sessions" parent="openacademy_menu_courses" action="openacademy_sessions_act" />
+  </data>
 </odoo>

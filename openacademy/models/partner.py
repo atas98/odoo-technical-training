@@ -9,5 +9,4 @@ class Partner(models.Model):
     session_ids = fields.Many2many('openacademy.session',
                                    relation='attendee_ids',
                                    string="Attended Sessions",
-                                   readonly=True,
-                                   auto_join=True)
+                                   readonly=True)
