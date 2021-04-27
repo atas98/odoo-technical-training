@@ -24,19 +24,21 @@
     '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'contacts', 'mail'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        # 'views/views.xml',
+        # 'views/templates.xml',
         'views/courses.xml',
         'views/sessions.xml',
+        'views/partners.xml',
+        'views/wizard.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
-        'demo/data.xml',
+        # 'demo/data.xml',
     ],
 }
