@@ -1,0 +1,42 @@
+<odoo>
+  <data>
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="openacademy_contacts_act">
+      <field name="name">Contacts</field>
+      <field name="res_model">res.partner</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Add instructor field to existing view -->
+    <record model="ir.ui.view" id="partner_form_view">
+      <field name="name">partner.instructor</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml">
+        <notebook position="inside">
+          <page string="Sessions">
+            <group>
+              <field name="instructor" />
+              <field name="session_ids" />
+            </group>
+          </page>
+        </notebook>
+      </field>
+    </record>
+
+    <!-- Tree view -->
+    <record model="ir.ui.view" id="partner_tree_view">
+      <field name="name">partner.instructor</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_tree" />
+      <field name="arch" type="xml">
+        <field name="user_id" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </field>
+        <field name="email" position="after">
+          <field name="instructor" />
+        </field>
+      </field>
+    </record>
+  </data>
+</odoo>

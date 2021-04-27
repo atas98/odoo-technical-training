@@ -3,8 +3,11 @@ from odoo import api, fields, models
 
 
 class Partner(models.Model):
-    _name = 'openacademy.partner'
+    _inherit = 'res.partner'
 
-    name = fields.Char()
-    instructor = fields.Boolean()
-    session_ids = fields.Many2many('openacademy.session', readonly=True)
+    instructor = fields.Boolean(default=False)
+    session_ids = fields.Many2many('openacademy.session',
+                                   relation='attendee_ids',
+                                   string="Attended Sessions",
+                                   readonly=True,
+                                   auto_join=True)
