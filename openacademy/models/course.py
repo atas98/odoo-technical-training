@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+import logging
 from odoo import api, fields, models
 
+_logger = logging.getLogger(__name__)
 
 class Course(models.Model):
     _name = 'openacademy.course'
-    _description = "OpenAcademy Courses"
+    _description = "Open Academy Courses"
 
     name = fields.Char(required=True)
     description = fields.Text()
@@ -15,6 +17,14 @@ class Course(models.Model):
                                         ("hard", "Hard")])
 
     attendee_count = fields.Integer(compute='_compute_attendee_count')
+
+    can_edit_responsible = fields.Boolean(
+        compute='_compute_can_edit_responsible')
+
+    def _compute_can_edit_responsible(self):
+        for r in self:
+            r.can_edit_responsible = self.env.user \
+                .has_group('openacademy.group_archmaesters')
 
     @api.depends('session_ids.attendees_count')
     def _compute_attendee_count(self):
