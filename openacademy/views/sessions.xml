@@ -40,6 +40,11 @@
                 name="action_draft"
                 states="confirmed,done"
                 groups="openacademy.group_maesters" />
+            <button
+                string="Invoice teacher"
+                type="object"
+                name="invoice_teacher"
+                attrs="{'invisible': [('is_paid', '=', True)]}" />
             <field
                 name="state"
                 widget="statusbar"
@@ -55,7 +60,6 @@
                 name="instructor_id"
                 string="Instructor"
                 domain="['&amp;', ('level', '>=', level_boundary), ('instructor', '=', True)]" />
-            <!-- 'level' '>='  -->
             <field
                 name="course_id"
                 string="Course" />
@@ -66,6 +70,10 @@
             <field
                 name="seats"
                 string="Seats" />
+            <field
+                name="is_paid"
+                string="Is paid"
+                invisible="True" />
           </group>
 
           <separator />

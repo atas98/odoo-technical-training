@@ -23,25 +23,21 @@ class Session(models.Model):
     start_date = fields.Date(default=fields.Date.today())
     end_date = fields.Date(default=fields.Date.today())
     duration = fields.Float(digits=(6, 2), default=1.0)
+    seats = fields.Integer()
+    is_paid = fields.Boolean(default=False)
 
+    product_id = fields.Many2one('product.template')
+    taken_seats = fields.Float(compute='_compute_taken_seats')
+    attendees_count = fields.Integer(compute='_compute_attendees_count',
+                                     stored=True)
     instructor_id = fields.Many2one('res.partner',
                                     domain=[('instructor', '=', True)],
                                     required=True)
     course_id = fields.Many2one('openacademy.course',
                                 required=True,
                                 ondelete='cascade')
-
-    # @api.model
-    # def _attendee_domain(self):
-    #     return [('level', '>=', self.level_boundary)]   
-
     attendee_ids = fields.Many2many('res.partner')
 
-    seats = fields.Integer()
-    taken_seats = fields.Float(compute='_compute_taken_seats')
-
-    attendees_count = fields.Integer(compute='_compute_attendees_count',
-                                     stored=True)
 
     @api.depends('level')
     def _compute_level_boundary(self):
@@ -109,3 +105,34 @@ class Session(models.Model):
     def action_draft(self):
         for r in self:
             r.state = 'draft'
+
+    def invoice_teacher(self):
+        if self.instructor_id:
+            # Search for instructor account
+            instructor_account_move = self.env['account.move'].search([
+                ('partner_id', '=', self.instructor_id.id)
+            ], limit=1)
+            if not instructor_account_move:
+                instructor_account_move = self.env['account.move'].sudo().create({
+                    'partner_id': self.instructor_id.id,
+                    'type_name': 'out_invoice',
+                    'invoice_date': fields.Date.today(),
+                    'journal_id': 1
+                })
+            # Set expense account
+            expense_account = self.env['account.account'].search([('user_type_id', '=', \
+                self.env.ref('account.data_account_type_expenses').id)], limit=1)
+
+            # Add line to account
+            self.env['account.move.line'].sudo().with_context(check_move_validity=False).create({
+                'name': self.product_id.name,
+                'move_id': instructor_account_move.id,
+                'journal_id': 1,
+                'account_id': expense_account.id,
+                'product_id': self.product_id.id,
+                'price_unit': self.product_id.lst_price,
+                'date': fields.Date.today()
+            })
+
+            # Set session as paid
+            self.is_paid = True
