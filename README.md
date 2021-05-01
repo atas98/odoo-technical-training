@@ -13,3 +13,9 @@
 [x] - Fix **Account Receivable - Account Payable** error
 [x] - Add button **"Invoice teacher"** to session form view
 [x] - Create handler for button
+
+### Reports
+
+[x] - Create action for report
+[x] - Create report template
+[x] - Insert barcode

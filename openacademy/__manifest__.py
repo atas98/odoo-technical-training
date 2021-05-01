@@ -24,7 +24,7 @@
     '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'contacts', 'mail', 'product', 'account'],
+    'depends': ['base', 'contacts', 'mail', 'product', 'account', 'website'],
 
     # always loaded
     'data': [
@@ -34,6 +34,7 @@
         'views/courses.xml',
         'views/sessions.xml',
         'views/partners.xml',
+        'views/reports.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode

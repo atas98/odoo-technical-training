@@ -66,7 +66,9 @@
             <field
                 name="level"
                 string="Course level" />
-            <field name="level_boundary" />
+            <field
+                name="level_boundary"
+                invisible="True" />
             <field
                 name="seats"
                 string="Seats" />

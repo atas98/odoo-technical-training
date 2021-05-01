@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, Warning
 
 
 class Session(models.Model):
@@ -37,6 +37,9 @@ class Session(models.Model):
                                 required=True,
                                 ondelete='cascade')
     attendee_ids = fields.Many2many('res.partner')
+
+    barcode = fields.Binary()
+
 
 
     @api.depends('level')
@@ -136,3 +139,5 @@ class Session(models.Model):
 
             # Set session as paid
             self.is_paid = True
+        else:
+            Warning("Instructor must be set")
