@@ -1,59 +1,33 @@
 <odoo>
   <data>
     <!-- actions opening views on models -->
-    <record
-        id="openacademy_courses_act"
-        model="ir.actions.act_window">
+    <record id="openacademy_courses_act" model="ir.actions.act_window">
       <field name="name">Courses</field>
       <field name="res_model">openacademy.course</field>
       <field name="view_mode">tree,form</field>
     </record>
 
-    <record
-        model="ir.ui.view"
-        id="course_form_view">
+    <record model="ir.ui.view" id="course_form_view">
       <field name="name">course.form</field>
       <field name="model">openacademy.course</field>
-      <field
-          name="arch"
-          type="xml">
+      <field name="arch" type="xml">
         <form string="Add course">
           <sheet>
             <div class="button_box">
-              <button
-                  class="oe_stat_button"
-                  type="object"
-                  name="open_attendees"
-                  icon="fa-users">
+              <button class="oe_stat_button" type="object" name="open_attendees" icon="fa-users">
                 <div class="o_stat_info">
-                  <field
-                      name="attendee_count"
-                      class="o_stat_value" />
-                  <span
-                      class="o_stat_text"
-                      attrs="{'invisible': [('attendee_count', '&lt;', 2)]}"> Attendees</span>
-                  <span
-                      class="o_stat_text"
-                      attrs="{'invisible': [('attendee_count', '&gt;', 1)]}"> Attendee</span>
+                  <field name="attendee_count" class="o_stat_value" />
+                  <span class="o_stat_text" attrs="{'invisible': [('attendee_count', '&lt;', 2)]}"> Attendees</span>
+                  <span class="o_stat_text" attrs="{'invisible': [('attendee_count', '&gt;', 1)]}"> Attendee</span>
                 </div>
               </button>
             </div>
             <group>
-              <field
-                  name="name"
-                  string="Title" />
-              <field
-                  name="responsible_id"
-                  string="Responsible"
-                  attrs="{'readonly': [('can_edit_responsible', '!=', True)]}" />
-              <field name="can_edit_responsible" />
-              <!-- invisible="True" -->
-              <field
-                  name="description"
-                  string="Description" />
-              <field
-                  name="level"
-                  string="Level" />
+              <field name="name" string="Title" />
+              <field name="responsible_id" string="Responsible" attrs="{'readonly': [('can_edit_responsible', '!=', True)]}" />
+              <field name="can_edit_responsible" invisible="True" />
+              <field name="description" string="Description" />
+              <field name="level" string="Level" />
             </group>
           </sheet>
         </form>
@@ -61,14 +35,10 @@
     </record>
 
     <!-- Tree view -->
-    <record
-        model="ir.ui.view"
-        id="course_tree_view">
+    <record model="ir.ui.view" id="course_tree_view">
       <field name="name">course.tree</field>
       <field name="model">openacademy.course</field>
-      <field
-          name="arch"
-          type="xml">
+      <field name="arch" type="xml">
         <tree>
           <field name="name" />
           <field name="responsible_id" />

@@ -10,10 +10,10 @@ class Rental(models.Model):
     rental_date = fields.Date()
     return_date = fields.Date()
 
-    customer_address = fields.Text(related='customer_id.address', stored=True)
-    customer_email = fields.Char(related='customer_id.email', stored=True)
-    book_authors = fields.Many2many(related='book_id.author_ids', stored=True)
+    customer_address = fields.Text(related='customer_id.address', store=True)
+    customer_email = fields.Char(related='customer_id.email', store=True)
+    book_authors = fields.Many2many(related='book_id.author_ids', store=True)
     book_edition_date = fields.Date(related='book_id.edition_date',
-                                    stored=True)
+                                    store=True)
     book_publisher = fields.Char(related='book_id.publisher_id.name',
-                                 stored=True)
+                                 store=True)

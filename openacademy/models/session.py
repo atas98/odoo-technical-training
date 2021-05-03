@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import timedelta
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError, Warning
 
@@ -21,7 +22,9 @@ class Session(models.Model):
                              tracking=True,
                              groups='openacademy.group_maesters')
     start_date = fields.Date(default=fields.Date.today())
-    end_date = fields.Date(default=fields.Date.today())
+    end_date = fields.Date(store=True,
+                           compute='_get_end_date',
+                           inverse='_set_end_date')
     duration = fields.Float(digits=(6, 2), default=1.0)
     seats = fields.Integer()
     is_paid = fields.Boolean(default=False)
@@ -29,7 +32,7 @@ class Session(models.Model):
     product_id = fields.Many2one('product.template')
     taken_seats = fields.Float(compute='_compute_taken_seats')
     attendees_count = fields.Integer(compute='_compute_attendees_count',
-                                     stored=True)
+                                     store=True)
     instructor_id = fields.Many2one('res.partner',
                                     domain=[('instructor', '=', True)],
                                     required=True)
@@ -37,10 +40,6 @@ class Session(models.Model):
                                 required=True,
                                 ondelete='cascade')
     attendee_ids = fields.Many2many('res.partner')
-
-    barcode = fields.Binary()
-
-
 
     @api.depends('level')
     def _compute_level_boundary(self):
@@ -76,6 +75,27 @@ class Session(models.Model):
         self.message_subscribe([self.instructor_id.id])
 
         return session
+
+    @api.depends('start_date', 'duration')
+    def _get_end_date(self):
+        for r in self:
+            if not (r.start_date and r.duration):
+                r.end_date = r.start_date
+                continue
+
+            # Add duration to start_date, but: Monday + 5 days = Saturday, so
+            # subtract one second to get on Friday instead
+            duration = timedelta(days=r.duration, seconds=-1)
+            r.end_date = r.start_date + duration
+
+    def _set_end_date(self):
+        for r in self:
+            if not (r.start_date and r.end_date):
+                continue
+
+            # Compute the difference between dates, but: Friday - Monday = 4 days,
+            # so add one day to get 5 days instead
+            r.duration = (r.end_date - r.start_date).days + 1
 
     @api.depends('attendee_ids', 'seats')
     def _compute_taken_seats(self):

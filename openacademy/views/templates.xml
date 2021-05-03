@@ -1,0 +1,167 @@
+<odoo>
+    <data>
+        <template id="courses">
+            <t t-call="website.layout">
+                <t t-set="title">Courses</t>
+                <div class="oe_structure" />
+                <div class="oe_structure">
+                    <div class="container">
+                        <h2 style="text-align: center; margin=2em;">Courses</h2>
+                        <div t-foreach="course" t-as="cour">
+                            <div class="row">
+                                <div class="container-fluid border shadow-sm rounded" style="padding: 2em">
+                                    <div class="panel-heading text-center">
+                                        <h4 class="o_default_snippet_text">
+                                            <a t-attf-href="/openacademy/course/{{ slug(cour) }}">
+                                                <t t-esc="cour.name" />
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-info">
+                                        <p class="text-info">
+                                            <t t-esc="cour.description"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                    <hr/>
+                </div>
+            </t>
+        </template>
+
+        <template id="course_info">
+            <t t-call="website.layout">
+                <t t-set="title">
+                    Course information
+                </t>
+                <div class="oe_structure" />
+                <div class="oe_structure">
+                    <div class="container">
+                        <br />
+                        <h3 class="align-center" t-esc="course.name" />
+                        <p class="align-center lead" t-esc="course.description" />
+                        <t t-if="course.responsible_id">
+                            <p t-esc="course.responsible_id.name" />
+                        </t>
+                    </div>
+                    <br />
+                    <hr />
+                    <br />
+                    <t t-if="course.session_ids">
+                        <div class="container">
+                            <h5>Sessions</h5>
+                            <table class="table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Instructor</th>
+                                        <th>Duration</th>
+                                    </tr>
+                                </thead>
+                                <tr t-foreach="course.session_ids" t-as="session">
+                                    <td>
+                                        <a t-attf-href="/openacademy/session/{{ slug(session) }}">
+                                            <t t-esc="session.name" />
+                                        </a>
+                                    </td>
+                                    <td t-if="session.instructor_id.name">
+                                        <t t-esc="session.instructor_id.name" />
+                                    </td>
+                                    <td t-esc="session.duration" />
+                                </tr>
+                            </table>
+                        </div>
+                    </t>
+                    <hr />
+                </div>
+            </t>
+        </template>
+
+        <template id="sessions">
+            <t t-call="website.layout">
+                <t t-set="title">Sessions</t>
+                <div class="oe_structure" />
+                <div class="oe_structure">
+                    <div class="container">
+                        <h2 style="text-align: center; margin=2em;">Courses</h2>
+                        <div t-foreach="session" t-as="sess">
+                            <div class="row">
+                                <div class="container-fluid border shadow-sm rounded" style="padding: 2em">
+                                    <div class="panel-heading text-center">
+                                        <h4 class="o_default_snippet_text">
+                                            <a t-attf-href="/openacademy/session/{{ slug(sess) }}">
+                                                <t t-esc="sess.name" />
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-info">
+                                        <p class="text-info">
+                                            <span>Course: </span>
+                                            <t t-esc="sess.course_id.name"/>
+                                        </p>
+                                        <p class="text-info">
+                                            <span>Instructor: </span>
+                                            <t t-esc="sess.instructor_id.name"/>
+                                        </p>
+                                        <p class="text-info">
+                                            <span>Duration: </span>
+                                            <t t-esc="sess.duration"/>
+                                            <span> days</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                    <hr/>
+                </div>
+            </t>
+        </template>
+
+        <template id="session_info">
+            <t t-call="website.layout">
+                <t t-set="title">
+                    Session information
+                </t>
+                <div class="oe_structure" />
+                <div class="oe_structure">
+                    <div class="container">
+                        <h3 t-esc="session.name" />
+                        <h4 class="text-muted">
+                            <a t-attf-href="/openacademy/course/{{ slug(session.course_id) }}">
+                                <t t-esc="session.course_id.name" />
+                            </a>
+                        </h4>
+                        <p>
+                            <span>Instructor: </span>
+                            <span t-esc="session.instructor_id.name" />
+                        </p>
+                        <p>
+                            <span>Level: </span>
+                            <span t-esc="session.level" />
+                        </p>
+                        <p>
+                            <span>Seats: </span>
+                            <span t-esc="session.seats" />
+                        </p>
+                        <p>
+                            <span>Attendees: </span>
+                            <span t-esc="session.attendees_count" />
+                        </p>
+                        <p>
+                            <span>Date: </span>
+                            <span t-esc="session.start_date" />
+                            <span>-</span>
+                            <span t-esc="session.end_date" />
+                        </p>
+                    </div>
+                    <hr />
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

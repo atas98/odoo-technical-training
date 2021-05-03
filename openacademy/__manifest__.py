@@ -35,6 +35,7 @@
         'views/sessions.xml',
         'views/partners.xml',
         'views/reports.xml',
+        'views/templates.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode
