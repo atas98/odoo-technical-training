@@ -76,6 +76,10 @@
                 name="is_paid"
                 string="Is paid"
                 invisible="True" />
+            <field
+                name="attendees_count"
+                string="Attendees count"
+                invisible="True" />
           </group>
 
           <separator />

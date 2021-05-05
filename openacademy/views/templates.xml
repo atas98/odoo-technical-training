@@ -7,9 +7,13 @@
                 <div class="oe_structure">
                     <div class="container">
                         <h2 style="text-align: center; margin=2em;">Courses</h2>
-                        <div t-foreach="course" t-as="cour">
+                        <div
+                                t-foreach="course"
+                                t-as="cour">
                             <div class="row">
-                                <div class="container-fluid border shadow-sm rounded" style="padding: 2em">
+                                <div
+                                        class="container-fluid border shadow-sm rounded"
+                                        style="padding: 2em">
                                     <div class="panel-heading text-center">
                                         <h4 class="o_default_snippet_text">
                                             <a t-attf-href="/openacademy/course/{{ slug(cour) }}">
@@ -19,7 +23,7 @@
                                     </div>
                                     <div class="panel-info">
                                         <p class="text-info">
-                                            <t t-esc="cour.description"/>
+                                            <t t-esc="cour.description" />
                                         </p>
                                     </div>
                                 </div>
@@ -27,7 +31,7 @@
                             <br />
                         </div>
                     </div>
-                    <hr/>
+                    <hr />
                 </div>
             </t>
         </template>
@@ -41,8 +45,12 @@
                 <div class="oe_structure">
                     <div class="container">
                         <br />
-                        <h3 class="align-center" t-esc="course.name" />
-                        <p class="align-center lead" t-esc="course.description" />
+                        <h3
+                                class="align-center"
+                                t-esc="course.name" />
+                        <p
+                                class="align-center lead"
+                                t-esc="course.description" />
                         <t t-if="course.responsible_id">
                             <p t-esc="course.responsible_id.name" />
                         </t>
@@ -61,7 +69,9 @@
                                         <th>Duration</th>
                                     </tr>
                                 </thead>
-                                <tr t-foreach="course.session_ids" t-as="session">
+                                <tr
+                                        t-foreach="course.session_ids"
+                                        t-as="session">
                                     <td>
                                         <a t-attf-href="/openacademy/session/{{ slug(session) }}">
                                             <t t-esc="session.name" />
@@ -86,10 +96,14 @@
                 <div class="oe_structure" />
                 <div class="oe_structure">
                     <div class="container">
-                        <h2 style="text-align: center; margin=2em;">Courses</h2>
-                        <div t-foreach="session" t-as="sess">
+                        <h2 style="text-align: center; margin=2em;">Sessions</h2>
+                        <div
+                                t-foreach="session"
+                                t-as="sess">
                             <div class="row">
-                                <div class="container-fluid border shadow-sm rounded" style="padding: 2em">
+                                <div
+                                        class="container-fluid border shadow-sm rounded"
+                                        style="padding: 2em">
                                     <div class="panel-heading text-center">
                                         <h4 class="o_default_snippet_text">
                                             <a t-attf-href="/openacademy/session/{{ slug(sess) }}">
@@ -100,15 +114,15 @@
                                     <div class="panel-info">
                                         <p class="text-info">
                                             <span>Course: </span>
-                                            <t t-esc="sess.course_id.name"/>
+                                            <t t-esc="sess.course_id.name" />
                                         </p>
                                         <p class="text-info">
                                             <span>Instructor: </span>
-                                            <t t-esc="sess.instructor_id.name"/>
+                                            <t t-esc="sess.instructor_id.name" />
                                         </p>
                                         <p class="text-info">
                                             <span>Duration: </span>
-                                            <t t-esc="sess.duration"/>
+                                            <t t-esc="sess.duration" />
                                             <span> days</span>
                                         </p>
                                     </div>
@@ -117,7 +131,7 @@
                             <br />
                         </div>
                     </div>
-                    <hr/>
+                    <hr />
                 </div>
             </t>
         </template>
