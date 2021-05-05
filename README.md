@@ -1,5 +1,7 @@
 # TODOs
 
+## Open Academy
+
 ### Access rights
 
 [x] - Add rule for archs to modify courses
@@ -19,3 +21,22 @@
 [x] - Create action for report
 [x] - Create report template
 [x] - Insert barcode
+
+### Controllers
+
+[x] - Create controller with routes
+[x] - Create template for corses
+[x] - Create template for sessions
+
+
+## Library
+
+### Actions/Views
+
+[ ] - Create menu
+[ ] - Tree/form views for Books 
+[ ] - Tree/form views for Partners
+[ ] - Tree/form views for Rentals 
+[ ] - Tree/form views for Publishers 
+[ ] - Domain for authors in Books form
+[ ] - Search filter by author_ids and isbn
