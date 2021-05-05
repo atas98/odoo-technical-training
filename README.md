@@ -28,15 +28,14 @@
 [x] - Create template for corses
 [x] - Create template for sessions
 
-
 ## Library
 
 ### Actions/Views
 
-[ ] - Create menu
-[ ] - Tree/form views for Books 
-[ ] - Tree/form views for Partners
-[ ] - Tree/form views for Rentals 
-[ ] - Tree/form views for Publishers 
-[ ] - Domain for authors in Books form
-[ ] - Search filter by author_ids and isbn
+[x] - Create menu
+[x] - Tree/form views for Books
+[x] - Tree/form views for Partners
+[x] - Tree/form views for Rentals
+[x] - Tree/form views for Publishers
+[x] - Domain for authors in Books form
+[x] - Search filter by author_ids and isbn

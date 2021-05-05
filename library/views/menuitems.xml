@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <data>
+                <!-- Top menu item -->
+                <menuitem
+                                name="Library"
+                                id="library_menu_root"
+                                web_icon="library,static/description/icon.png" />
+
+                <!-- menu categories -->
+                <menuitem
+                                name="Books"
+                                id="library_menu_books"
+                                parent="library_menu_root" />
+                <menuitem
+                                name="Partners"
+                                id="library_menu_partners"
+                                parent="library_menu_root" />
+                <menuitem
+                                name="Rentals"
+                                id="library_menu_rentals"
+                                parent="library_menu_root" />
+                <menuitem
+                                name="Publishers"
+                                id="library_menu_publishers"
+                                parent="library_menu_root" />
+
+                <!-- actions -->
+                <menuitem
+                                name="Books"
+                                id="books_menu_books"
+                                parent="library_menu_books"
+                                action="library_books_act" />
+                <menuitem
+                                name="Partners"
+                                id="partners_menu_partners"
+                                parent="library_menu_partners"
+                                action="library_partners_act" />
+                <menuitem
+                                name="Rentals"
+                                id="rentals_menu_rentals"
+                                parent="library_menu_rentals"
+                                action="library_rentals_act" />
+                <menuitem
+                                name="Publishers"
+                                id="publishers_menu_publishers"
+                                parent="library_menu_publishers"
+                                action="library_publishers_act" />
+        </data>
+</odoo>

@@ -1,0 +1,83 @@
+<odoo>
+    <data>
+        <!-- actions opening views on models -->
+        <record
+                id="library_books_act"
+                model="ir.actions.act_window">
+            <field name="name">Books</field>
+            <field name="res_model">library.book</field>
+            <field name="view_mode">tree,form,search</field>
+        </record>
+
+        <record
+                model="ir.ui.view"
+                id="book_form_view">
+            <field name="name">book.form</field>
+            <field name="model">library.book</field>
+            <field
+                    name="arch"
+                    type="xml">
+                <form string="Add new book">
+                    <sheet>
+                        <group>
+                            <field
+                                    name="name"
+                                    string="Title" />
+                            <field
+                                    name="author_ids"
+                                    string="Authors"
+                                    domain="[('partner_type', '=', 'author')]"
+                                    widget="many2many_tags" />
+                            <field name="edition_date" />
+                            <field name="isbn" />
+                            <field
+                                    name="publisher_id"
+                                    string="Publisher" />
+                            <field
+                                    name="rental_ids"
+                                    string="Rentals" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree view -->
+        <record
+                model="ir.ui.view"
+                id="book_tree_view">
+            <field name="name">book.tree</field>
+            <field name="model">library.book</field>
+            <field
+                    name="arch"
+                    type="xml">
+                <tree>
+                    <field name="name" />
+                    <field
+                            name="author_ids"
+                            widget="many2many_tags" />
+                    <field name="isbn" />
+                    <field name="edition_date" />
+                    <field name="publisher_id" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Search view -->
+        <record
+                model="ir.ui.view"
+                id="book_search_view">
+            <field name="name">book.search</field>
+            <field name="model">library.book</field>
+            <field
+                    name="arch"
+                    type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="author_ids" />
+                    <field name="isbn" />
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

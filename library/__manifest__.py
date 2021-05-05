@@ -27,6 +27,11 @@
     'data':        [
         "security/ir.model.access.csv",
         "data/library_data.xml",
+        "views/books.xml",
+        "views/partners.xml",
+        "views/publishers.xml",
+        "views/rentals.xml",
+        "views/menuitems.xml",
     ],
     # only loaded in demonstration mode
     'demo':        [],
