@@ -13,4 +13,4 @@ class Book(models.Model):
     isbn = fields.Char(index=True)
     publisher_id = fields.Many2one('library.publisher',
                                    string="Publisher")
-    rental_ids = fields.One2many('library.rental', 'book_id')
+    copy_ids = fields.One2many('library.copy', 'book_id')

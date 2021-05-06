@@ -1,21 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record id="report_session" model="ir.actions.report">
+        <record
+                id="report_session"
+                model="ir.actions.report">
             <field name="name">Session Report</field>
             <field name="model">openacademy.session</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">openacademy.report_session_view</field>
             <field name="report_file">openacademy.report_session</field>
-            <field name="binding_model_id" ref="model_openacademy_session" />
+            <field
+                    name="binding_model_id"
+                    ref="model_openacademy_session" />
             <field name="binding_type">report</field>
         </record>
 
         <template id="report_session_view">
             <t t-call="web.html_container">
                 <t t-call="web.external_layout">
-                    <t t-foreach="docs" t-as="doc">
-                        <t t-foreach="doc.attendee_ids" t-as="invited">
-                            <div class="page" style="page-break-after: always;">
+                    <t
+                            t-foreach="docs"
+                            t-as="doc">
+                        <t
+                                t-foreach="doc.attendee_ids"
+                                t-as="invited">
+                            <div
+                                    class="page"
+                                    style="page-break-after: always;">
                                 <h2 t-field="doc.name" />
                                 <p>
                                     Course:
@@ -44,7 +55,9 @@
                                 </p>
                                 <h3>Attendees:</h3>
                                 <ul>
-                                    <t t-foreach="doc.attendee_ids" t-as="attendee">
+                                    <t
+                                            t-foreach="doc.attendee_ids"
+                                            t-as="attendee">
                                         <li>
                                             <span t-field="attendee.name" />
                                             <span t-field="attendee.email" />
@@ -53,7 +66,7 @@
                                 </ul>
                                 <br />
                                 <footer>
-                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('Code128', invited.name+doc.course_id.name, 400, 80)"/>
+                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('Code128', invited.name+doc.course_id.name, 400, 80)" />
                                 </footer>
                             </div>
                         </t>

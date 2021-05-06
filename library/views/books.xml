@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
         <!-- actions opening views on models -->
@@ -34,8 +35,8 @@
                                     name="publisher_id"
                                     string="Publisher" />
                             <field
-                                    name="rental_ids"
-                                    string="Rentals" />
+                                    name="copy_ids"
+                                    string="Copies" />
                         </group>
                     </sheet>
                 </form>

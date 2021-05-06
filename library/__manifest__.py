@@ -31,6 +31,7 @@
         "views/partners.xml",
         "views/publishers.xml",
         "views/rentals.xml",
+        "views/copies.xml",
         "views/menuitems.xml",
     ],
     # only loaded in demonstration mode

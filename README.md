@@ -39,3 +39,15 @@
 [x] - Tree/form views for Publishers
 [x] - Domain for authors in Books form
 [x] - Search filter by author_ids and isbn
+
+### Model inheritance
+
+[x] - Add library.copy model
+[x] - Create views for this model
+
+
+### View inheritance
+
+[x] - Inherit book view for copy
+
+### 
