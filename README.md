@@ -55,3 +55,8 @@
 [x] - Create library.price model
 [x] - Link library.payment to res.partner
 [ ] - Notify clients about payments (email)
+
+### Wizard
+
+[x] - Create smart button for library.copy (readers_count)
+[x] - Create action for library.copy (Add books)

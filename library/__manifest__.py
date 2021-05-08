@@ -31,6 +31,7 @@
         "views/rentals.xml",
         "views/copies.xml",
         "views/price.xml",
+        "wizard/wizard.xml",
         "views/menuitems.xml",
         "data/price_data.xml",
         "data/partner_data.xml",

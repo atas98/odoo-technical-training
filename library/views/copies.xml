@@ -2,62 +2,50 @@
 <odoo>
   <data>
     <!-- actions opening views on models -->
-    <record
-        id="library_copies_act"
-        model="ir.actions.act_window">
+    <record id="library_copies_act" model="ir.actions.act_window">
       <field name="name">Copies</field>
       <field name="res_model">library.copy</field>
       <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Form view -->
-    <record
-        model="ir.ui.view"
-        id="copy_form_view">
+    <record model="ir.ui.view" id="copy_form_view">
       <field name="name">copy.form</field>
       <field name="model">library.copy</field>
-      <field
-          name="inherit_id"
-          ref="library.book_form_view" />
+      <field name="inherit_id" ref="library.book_form_view" />
       <field name="mode">primary</field>
-      <field
-          name="arch"
-          type="xml">
-        <xpath
-            expr="//sheet"
-            position="before">
+      <field name="arch" type="xml">
+        <xpath expr="//sheet" position="before">
           <header>
-            <field
-                name="book_state"
-                widget="statusbar"
-                clickable="False" />
+            <field name="book_state" widget="statusbar" clickable="False" />
           </header>
         </xpath>
-        <field
-            name="is_book"
-            position="attributes">
+        <xpath expr="//sheet/group" position="before">
+          <group>
+            <div class="button_box">
+              <button class="oe_stat_button" type="object" name="open_readers" icon="fa-users">
+                <div class="o_stat_info">
+                  <field name="readers_count" class="o_stat_value" />
+                  <span class="o_stat_text" attrs="{'invisible': [('readers_count', '!=', 1)]}"> Readers</span>
+                  <span class="o_stat_text" attrs="{'invisible': [('readers_count', '=', 1)]}"> Reader</span>
+                </div>
+              </button>
+            </div>
+          </group>
+        </xpath>
+        <field name="is_book" position="attributes">
           <attribute name="invisible">True</attribute>
         </field>
-        <field
-            name="copy_ids"
-            position="attributes">
+        <field name="copy_ids" position="attributes">
           <attribute name="invisible">True</attribute>
         </field>
-        <field
-            name="name"
-            position="attributes">
+        <field name="name" position="attributes">
           <attribute name="invisible">True</attribute>
         </field>
-        <field
-            name="name"
-            position="before">
-          <field
-              name="book_id"
-              string='Title' />
+        <field name="name" position="before">
+          <field name="book_id" string='Title' />
         </field>
-        <field
-            name="publisher_id"
-            position="after">
+        <field name="publisher_id" position="after">
           <field name="reference" />
           <field name="rental_ids" />
         </field>
@@ -65,21 +53,13 @@
     </record>
 
     <!-- Tree view -->
-    <record
-        model="ir.ui.view"
-        id="copy_tree_view">
+    <record model="ir.ui.view" id="copy_tree_view">
       <field name="name">copy.tree</field>
       <field name="model">library.copy</field>
-      <field
-          name="inherit_id"
-          ref="library.book_tree_view" />
+      <field name="inherit_id" ref="library.book_tree_view" />
       <field name="mode">primary</field>
-      <field
-          name="arch"
-          type="xml">
-        <field
-            name="name"
-            position="before">
+      <field name="arch" type="xml">
+        <field name="name" position="before">
           <field name="reference" />
         </field>
       </field>

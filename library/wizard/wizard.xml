@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="wizard_form_view">
+            <field name="name">wizard.form</field>
+            <field name="model">library.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Add Books">
+                    <group>
+                        <field name="customer_id" domain="[('partner_type', '=', 'customer')]"/>
+                        <field name="return_date" />
+                        <field name="copy_ids" invisible="True"/>
+                        <field name="rental_ids" invisible="True" />
+                    </group>
+                    <footer>
+                        <button name="action_continue" type="object" string="Continue" class="oe_highlight" />
+                        <button special="cancel" string="Cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="launch_rental_wizard" name="Add Books" binding_model="library.copy" res_model="library.wizard" view_mode="form" target="new" />
+    </data>
+</odoo>

@@ -59,14 +59,12 @@
       <field name="model">library.rental</field>
       <field name="arch" type="xml">
         <tree decoration-danger="not return_date or return_date > planned_return_date">
-
           <field name="customer_id" string="Customer" />
           <field name="book_id" string="Book" />
           <field name="book_authors" string="Author" widget="many2many_tags" />
           <field name="rental_date" />
           <field name="return_date" />
           <field name="planned_return_date" />
-
         </tree>
       </field>
     </record>
