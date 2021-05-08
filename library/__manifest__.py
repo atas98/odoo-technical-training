@@ -8,7 +8,7 @@
                    """,
 
     'description': """
-        Manage a Library: customers, books, etc.... 
+        Manage a Library: customers, books, etc....
     """,
 
     'author':      "Odoo",
@@ -21,7 +21,7 @@
     'version':     '0.1',
 
     # any module necessary for this one to work correctly
-    'depends':     ['base', 'product', 'mail', 'contacts'],
+    'depends':     ['base', 'product', 'mail', 'contacts', 'website'],
 
     # always loaded
     'data':        [
@@ -32,6 +32,7 @@
         "views/copies.xml",
         "views/price.xml",
         "wizard/wizard.xml",
+        'views/reports.xml',
         "views/menuitems.xml",
         "data/price_data.xml",
         "data/partner_data.xml",

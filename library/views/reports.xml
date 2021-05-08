@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <record id="report_session" model="ir.actions.report">
+      <field name="name">Customer Rentals Report</field>
+      <field name="model">res.partner</field>
+      <field name="report_type">qweb-pdf</field>
+      <field name="report_name">library.report_rental_view</field>
+      <field name="report_file">library.report_rental</field>
+      <field name="binding_model_id" ref="model_res_partner" />
+      <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_rental_view">
+      <t t-call="web.html_container">
+        <t t-call="web.external_layout">
+          <t t-foreach="docs" t-as="partner">
+            <div class="page" style="page-break-after: always;">
+              <h2 t-field="partner.display_name" />
+              <p>
+                <span>E-mail: </span>
+                <span t-field="partner.email" />
+                <br />
+                <span>Phone: </span>
+                <span t-field="partner.phone" />
+                <br />
+                <span>Address: </span>
+                <span t-field="partner.contact_address" />
+                <br />
+              </p>
+              <br />
+              <table class="table table-condensed" style="border: 3px;">
+                <thead>
+                  <tr>
+                    <th>Reference</th>
+                    <th>Book</th>
+                    <th>Author</th>
+                    <th>Rental date</th>
+                    <th>Return date</th>
+                    <th>State</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="partner.rental_ids" t-as="rental">
+                    <tr>
+                      <td>
+                        <span t-field="rental.copy_id.reference" />
+                      </td>
+                      <td>
+                        <span t-field="rental.book_id.name" />
+                      </td>
+                      <td>
+                        <t t-foreach="rental.book_authors" t-as="author">
+                          <span t-field="author.name" />
+                        </t>
+                      </td>
+                      <td>
+                        <span t-field="rental.rental_date" />
+                      </td>
+                      <td>
+                        <span t-field="rental.return_date" />
+                      </td>
+                      <td>
+                        <span t-field="rental.state" />
+                      </td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </div>
+          </t>
+        </t>
+      </t>
+    </template>
+  </data>
+</odoo>
