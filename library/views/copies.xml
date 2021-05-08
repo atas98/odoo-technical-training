@@ -2,29 +2,62 @@
 <odoo>
   <data>
     <!-- actions opening views on models -->
-    <record id="library_copies_act" model="ir.actions.act_window">
+    <record
+        id="library_copies_act"
+        model="ir.actions.act_window">
       <field name="name">Copies</field>
       <field name="res_model">library.copy</field>
-      <field name="view_mode">tree,form,search</field>
+      <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Form view -->
-    <record model="ir.ui.view" id="copy_form_view">
+    <record
+        model="ir.ui.view"
+        id="copy_form_view">
       <field name="name">copy.form</field>
       <field name="model">library.copy</field>
-      <field name="inherit_id" ref="library.book_form_view" />
+      <field
+          name="inherit_id"
+          ref="library.book_form_view" />
       <field name="mode">primary</field>
-      <field name="arch" type="xml">
-        <field name="copy_ids" position="attributes">
+      <field
+          name="arch"
+          type="xml">
+        <xpath
+            expr="//sheet"
+            position="before">
+          <header>
+            <field
+                name="book_state"
+                widget="statusbar"
+                clickable="False" />
+          </header>
+        </xpath>
+        <field
+            name="is_book"
+            position="attributes">
           <attribute name="invisible">True</attribute>
         </field>
-        <field name="name" position="attributes">
+        <field
+            name="copy_ids"
+            position="attributes">
           <attribute name="invisible">True</attribute>
         </field>
-        <field name="name" position="before">
-          <field name="book_id" string='Title'/>
+        <field
+            name="name"
+            position="attributes">
+          <attribute name="invisible">True</attribute>
         </field>
-        <field name="publisher_id" position="after">
+        <field
+            name="name"
+            position="before">
+          <field
+              name="book_id"
+              string='Title' />
+        </field>
+        <field
+            name="publisher_id"
+            position="after">
           <field name="reference" />
           <field name="rental_ids" />
         </field>
@@ -32,26 +65,21 @@
     </record>
 
     <!-- Tree view -->
-    <record model="ir.ui.view" id="copy_tree_view">
+    <record
+        model="ir.ui.view"
+        id="copy_tree_view">
       <field name="name">copy.tree</field>
       <field name="model">library.copy</field>
-      <field name="inherit_id" ref="library.book_tree_view" />
+      <field
+          name="inherit_id"
+          ref="library.book_tree_view" />
       <field name="mode">primary</field>
-      <field name="arch" type="xml">
-        <field name="name" position="before">
-          <field name="reference" />
-        </field>
-      </field>
-    </record>
-
-    <!-- Search view -->
-    <record model="ir.ui.view" id="copy_search_view">
-      <field name="name">copy.search</field>
-      <field name="model">library.copy</field>
-      <field name="inherit_id" ref="library.book_search_view" />
-      <field name="mode">primary</field>
-      <field name="arch" type="xml">
-        <field name="name" position="after">
+      <field
+          name="arch"
+          type="xml">
+        <field
+            name="name"
+            position="before">
           <field name="reference" />
         </field>
       </field>

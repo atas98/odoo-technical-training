@@ -1,84 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
-        <!-- actions opening views on models -->
-        <record
-                id="library_books_act"
-                model="ir.actions.act_window">
-            <field name="name">Books</field>
-            <field name="res_model">library.book</field>
-            <field name="view_mode">tree,form,search</field>
-        </record>
+  <data>
+    <!-- actions opening views on models -->
+    <record
+        id="library_books_act"
+        model="ir.actions.act_window">
+      <field name="name">Books</field>
+      <field name="res_model">product.product</field>
+      <field name="view_mode">tree,form,search</field>
+      <field name="domain">[('is_book', '=', True)]</field>
+      <field
+          name="view_ids"
+          eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('library.book_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('library.book_form_view')})]" />
+    </record>
 
-        <record
-                model="ir.ui.view"
-                id="book_form_view">
-            <field name="name">book.form</field>
-            <field name="model">library.book</field>
-            <field
-                    name="arch"
-                    type="xml">
-                <form string="Add new book">
-                    <sheet>
-                        <group>
-                            <field
-                                    name="name"
-                                    string="Title" />
-                            <field
-                                    name="author_ids"
-                                    string="Authors"
-                                    domain="[('partner_type', '=', 'author')]"
-                                    widget="many2many_tags" />
-                            <field name="edition_date" />
-                            <field name="isbn" />
-                            <field
-                                    name="publisher_id"
-                                    string="Publisher" />
-                            <field
-                                    name="copy_ids"
-                                    string="Copies" />
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+    <record
+        model="ir.ui.view"
+        id="book_form_view">
+      <field name="name">product.form</field>
+      <field name="model">product.product</field>
+      <field
+          name="inherit_id"
+          ref="product.product_normal_form_view" />
+      <field name="mode">primary</field>
+      <field
+          name="arch"
+          type="xml">
+        <xpath
+            expr="//form"
+            position="replace">
+          <form string="Add new book">
+            <sheet>
+              <group>
+                <field name="is_book" />
+                <field
+                    name="name"
+                    string="Title" />
+                <field
+                    name="author_ids"
+                    string="Authors"
+                    domain="[('partner_type', '=', 'author')]"
+                    widget="many2many_tags"
+                    context="{'form_view_ref': 'library.partner_form_view'}" />
+              </group>
+              <group>
+                <field name="edition_date" />
+                <field name="isbn" />
+                <field
+                    name="publisher_id"
+                    string="Publisher"
+                    domain="[('partner_type', '=', 'publisher')]"
+                    context="{'form_view_ref': 'library.partner_form_view'}" />
+              </group>
+              <group>
+                <field
+                    name="copy_ids"
+                    string="Copies" />
+              </group>
+            </sheet>
+          </form>
+        </xpath>
+      </field>
+    </record>
 
-        <!-- Tree view -->
-        <record
-                model="ir.ui.view"
-                id="book_tree_view">
-            <field name="name">book.tree</field>
-            <field name="model">library.book</field>
+    <!-- Tree view -->
+    <record
+        model="ir.ui.view"
+        id="book_tree_view">
+      <field name="name">product.tree</field>
+      <field name="model">product.product</field>
+      <field
+          name="inherit_id"
+          ref="product.product_product_tree_view" />
+      <field name="mode">primary</field>
+      <field
+          name="arch"
+          type="xml">
+        <xpath
+            expr="//tree"
+            position="replace">
+          <tree>
+            <field name="name" />
             <field
-                    name="arch"
-                    type="xml">
-                <tree>
-                    <field name="name" />
-                    <field
-                            name="author_ids"
-                            widget="many2many_tags" />
-                    <field name="isbn" />
-                    <field name="edition_date" />
-                    <field name="publisher_id" />
-                </tree>
-            </field>
-        </record>
+                name="author_ids"
+                widget="many2many_tags" />
+            <field name="isbn" />
+            <field name="edition_date" />
+            <field name="publisher_id" />
+          </tree>
+        </xpath>
+      </field>
+    </record>
 
-        <!-- Search view -->
-        <record
-                model="ir.ui.view"
-                id="book_search_view">
-            <field name="name">book.search</field>
-            <field name="model">library.book</field>
-            <field
-                    name="arch"
-                    type="xml">
-                <search>
-                    <field name="name" />
-                    <field name="author_ids" />
-                    <field name="isbn" />
-                </search>
-            </field>
-        </record>
-    </data>
+    <!-- Search view -->
+    <record
+        model="ir.ui.view"
+        id="book_search_view">
+      <field name="name">product.search</field>
+      <field name="model">product.product</field>
+      <field
+          name="inherit_id"
+          ref="product.product_search_form_view" />
+      <field name="mode">primary</field>
+      <field
+          name="arch"
+          type="xml">
+        <xpath
+            expr="//search"
+            position="replace">
+          <search>
+            <field name="name" />
+            <field name="author_ids" />
+            <field name="isbn" />
+          </search>
+        </xpath>
+      </field>
+    </record>
+  </data>
 </odoo>

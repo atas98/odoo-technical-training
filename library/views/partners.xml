@@ -1,81 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
-        <!-- actions opening views on models -->
-        <record
-                id="library_partners_act"
-                model="ir.actions.act_window">
-            <field name="name">Partners</field>
-            <field name="res_model">library.partner</field>
-            <field name="view_mode">tree,form,search</field>
-        </record>
+  <data>
+    <!-- actions opening views on models -->
+    <record id="library_partners_act" model="ir.actions.act_window">
+      <field name="name">Partners</field>
+      <field name="res_model">res.partner</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('library.partner_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('library.partner_form_view')})]" />
+    </record>
 
-        <record
-                model="ir.ui.view"
-                id="partner_form_view">
-            <field name="name">partner.form</field>
-            <field name="model">library.partner</field>
-            <field
-                    name="arch"
-                    type="xml">
-                <form string="Add new partner">
-                    <sheet>
-                        <group>
-                            <field name="name" />
-                            <field name="email" />
-                            <field name="address" />
-                            <field name="partner_type" />
-                            <field
-                                    name="rental_ids"
-                                    string="Rentals" />
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+    <!-- Form view -->
+    <record model="ir.ui.view" id="partner_form_view">
+      <field name="name">partner.form</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="mode">primary</field>
+      <field name="arch" type="xml">
+        <xpath expr="//form" position="replace">
+          <form string="Add new partner">
+            <sheet>
+              <group>
+                <field name="name" />
+                <field name="email" />
+                <field name="partner_type" />
+              </group>
+              <group>
+                <span class="o_form_label o_td_label" name="address_name">
+                  <b>Address</b>
+                </span>
+                <div class="o_address_format">
+                  <field name="street" placeholder="Street..." class="o_address_street" string="Address"/>
+                  <field name="street2" placeholder="Street 2..." class="o_address_street" string="Address 2"/>
+                  <field name="city" placeholder="City" class="o_address_city" string="City" />
+                  <field name="state_id" class="o_address_state" placeholder="State" options="{'no_open': True, 'no_quick_create': True}" />
+                  <field name="zip" placeholder="ZIP" class="o_address_zip" />
+                  <field name="country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" string="Country" />
+                </div>
+              </group>
+              <group>
+                <field name="rental_ids" string="Rentals" />
+                <field name="amount_owned" string="Amount owned" />
+              </group>
+            </sheet>
+          </form>
+        </xpath>
+      </field>
+    </record>
 
-        <!-- Tree view -->
-        <record
-                model="ir.ui.view"
-                id="partner_tree_view">
-            <field name="name">partner.tree</field>
-            <field name="model">library.partner</field>
-            <field
-                    name="arch"
-                    type="xml">
-                <tree>
-                    <field name="name" />
-                    <field name="email" />
-                    <field name="address" />
-                    <field name="partner_type" />
-                    <field
-                            name="rental_ids"
-                            string="Rentals" />
-                </tree>
-            </field>
-        </record>
+    <!-- Tree view -->
+    <record model="ir.ui.view" id="partner_tree_view">
+      <field name="name">partner.tree</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_tree" />
+      <!-- <field name="mode">primary</field> -->
+      <field name="arch" type="xml">
+        <xpath expr="//tree" position="replace">
+          <tree>
+            <field name="name" />
+            <field name="email" />
+            <field name="contact_address" />
+            <field name="partner_type" />
+            <field name="amount_owned" />
+          </tree>
+        </xpath>
+      </field>
+    </record>
 
-        <!-- Search view -->
-        <record
-                model="ir.ui.view"
-                id="partner_search_view">
-            <field name="name">partner.search</field>
-            <field name="model">library.partner</field>
-            <field
-                    name="arch"
-                    type="xml">
-                <search>
-                    <field name="name" />
-                    <filter
-                            name="only_authors"
-                            string="Only Authors"
-                            domain="[('partner_type', '=', 'author')]" />
-                    <filter
-                            name="only_customers"
-                            string="Only Customers"
-                            domain="[('partner_type', '=', 'customer')]" />
-                </search>
-            </field>
-        </record>
-    </data>
+    <!-- Search view -->
+    <record model="ir.ui.view" id="partner_search_view">
+      <field name="name">partner.search</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_res_partner_filter" />
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" />
+          <field name="amount_owned" />
+          <filter name="only_authors" string="Only Authors" domain="[('partner_type' ,'=','author')]" />
+          <filter name="only_customers" string="Only Customers" domain=" [('partner_type' ,'=', 'customer')]" />
+          <filter name="only_publishers" string="Only Publishers" domain="[('partner_type' ,'=', 'publisher')]" />
+        </search>
+      </field>
+    </record>
+  </data>
 </odoo>

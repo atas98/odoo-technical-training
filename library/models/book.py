@@ -2,15 +2,18 @@ from odoo import api, fields, models
 
 
 class Book(models.Model):
-    _name = 'library.book'
-    _description = "Library Book"
+    _inherit = 'product.product'
 
-    name = fields.Char(index=True)
-    author_ids = fields.Many2many('library.partner',
+    _sql_constraints = [
+        ('isbn_unique', 'unique(isbn)', 'ISBN already exists!')
+    ]
+
+    is_book = fields.Boolean()
+    author_ids = fields.Many2many('res.partner',
                                   string="Authors",
                                   index=True)
     edition_date = fields.Date()
     isbn = fields.Char(index=True)
-    publisher_id = fields.Many2one('library.publisher',
+    publisher_id = fields.Many2one('res.partner',
                                    string="Publisher")
     copy_ids = fields.One2many('library.copy', 'book_id')

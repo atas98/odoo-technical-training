@@ -45,9 +45,13 @@
 [x] - Add library.copy model
 [x] - Create views for this model
 
-
 ### View inheritance
 
 [x] - Inherit book view for copy
 
-### 
+### Business flow
+
+[x] - Inherit product.product and res.partner
+[x] - Create library.price model
+[x] - Link library.payment to res.partner
+[ ] - Notify clients about payments (email)

@@ -1,6 +1,5 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-book_read_all,Book_all,model_library_book,,1,1,1,1
+book_read_all,Book_all,model_product_product,,1,1,1,1
 copy_read_all,Copy_all,model_library_copy,,1,1,1,1
-partner_read_all,Partner_all,model_library_partner,,1,1,1,1
-publisher_read_all,Publisher_all,model_library_publisher,,1,1,1,1
+Partner_read_all,Partner_all,model_res_partner,,1,1,1,1
 Rental_read_all,Rental_all,model_library_rental,,1,1,1,1

@@ -1,98 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
-        <!-- actions opening views on models -->
-        <record
-                id="library_rentals_act"
-                model="ir.actions.act_window">
-            <field name="name">Rental</field>
-            <field name="res_model">library.rental</field>
-            <field name="view_mode">tree,form,search</field>
-        </record>
+  <data>
+    <!-- actions opening views on models -->
+    <record id="library_rentals_act" model="ir.actions.act_window">
+      <field name="name">Rental</field>
+      <field name="res_model">library.rental</field>
+      <field name="view_mode">tree,form,search</field>
+    </record>
 
-        <record
-                model="ir.ui.view"
-                id="rental_form_view">
-            <field name="name">rental.form</field>
-            <field name="model">library.rental</field>
-            <field
-                    name="arch"
-                    type="xml">
-                <form string="Add new rental">
-                    <sheet>
-                        <group>
-                            <field
-                                    name="customer_id"
-                                    string="Customer"
-                                    domain="[('partner_type', '=', 'customer')]" />
-                            <field
-                                    name="book_id"
-                                    string="Book" />
-                            <notebook string="Addintional information">
-                                <page string="Customer">
-                                    <field name="customer_address" />
-                                    <field name="customer_address" />
-                                    <field name="customer_email" />
-                                </page>
-                                <page string="Books">
-                                    <field name="book_authors" />
-                                    <field name="book_edition_date" />
-                                    <field name="book_publisher" />
-                                </page>
-                                <page string="Date">
-                                    <field name="rental_date" />
-                                    <field name="return_date" />
-                                    <field name="planned_return_date" />
-                                </page>
-                            </notebook>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+    <record model="ir.ui.view" id="rental_form_view">
+      <field name="name">rental.form</field>
+      <field name="model">library.rental</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button string="Confirm" type="object" name="action_confirm" states="draft" class="oe_highlight" />
+            <button string="Return" type="object" name="action_return" states="rented" class="oe_highlight" />
+            <button string="Lost" type="object" name="action_lost" states="rented" class="btn-danger" />
+            <field name="state" widget="statusbar" clickable="False" class="oe_highlight" />
+          </header>
+          <sheet>
+            <group>
+              <field name="customer_id" string="Customer" domain="[('partner_type', '=', 'customer')]" />
+              <field name="copy_id" string="Book" />
+            </group>
+            <notebook string="Addintional information">
+              <page string="Customer">
+                <group>
+                  <field name="customer_address" />
+                  <field name="customer_address" />
+                  <field name="customer_email" />
+                </group>
+              </page>
+              <page string="Book">
+                <group>
+                  <field name="book_name" string="Title" />
+                  <field name="book_authors" widget="many2many_tags" />
+                  <field name="book_edition_date" />
+                  <field name="book_publisher" />
+                </group>
+              </page>
+              <page string="Date">
+                <group>
+                  <field name="rental_date" />
+                  <field name="return_date" />
+                  <field name="planned_return_date" />
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
 
-        <!-- Tree view -->
-        <record
-                model="ir.ui.view"
-                id="rental_tree_view">
-            <field name="name">rental.tree</field>
-            <field name="model">library.rental</field>
-            <field
-                    name="arch"
-                    type="xml">
-                <tree decoration-danger="not return_date or return_date > planned_return_date">
+    <!-- Tree view -->
+    <record model="ir.ui.view" id="rental_tree_view">
+      <field name="name">rental.tree</field>
+      <field name="model">library.rental</field>
+      <field name="arch" type="xml">
+        <tree decoration-danger="not return_date or return_date > planned_return_date">
 
-                    <field
-                            name="customer_id"
-                            string="Customer" />
-                    <field
-                            name="book_id"
-                            string="Book" />
-                    <field
-                            name="book_authors"
-                            string="Author" />
-                    <field name="rental_date" />
-                    <field name="return_date" />
-                    <field name="planned_return_date" />
+          <field name="customer_id" string="Customer" />
+          <field name="book_id" string="Book" />
+          <field name="book_authors" string="Author" widget="many2many_tags" />
+          <field name="rental_date" />
+          <field name="return_date" />
+          <field name="planned_return_date" />
 
-                </tree>
-            </field>
-        </record>
+        </tree>
+      </field>
+    </record>
 
-        <!-- Search view -->
-        <record
-                model="ir.ui.view"
-                id="rental_search_view">
-            <field name="name">rental.search</field>
-            <field name="model">library.rental</field>
-            <field
-                    name="arch"
-                    type="xml">
-                <search>
-                    <field name="customer_id" />
-                    <field name="book_id" />
-                </search>
-            </field>
-        </record>
-    </data>
+    <!-- Search view -->
+    <record model="ir.ui.view" id="rental_search_view">
+      <field name="name">rental.search</field>
+      <field name="model">library.rental</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="customer_id" />
+          <field name="book_id" />
+        </search>
+      </field>
+    </record>
+  </data>
 </odoo>
