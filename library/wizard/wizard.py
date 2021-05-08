@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 
 class Wizard(models.TransientModel):
     _name = "library.wizard"
-    _description = "Wizard: Quick Registration of Attendees to Sessions"
+    _description = "Wizard: Quick rental creation"
 
     def _default_copies(self):
         return self.env['library.copy'].browse(self._context.get('active_ids'))

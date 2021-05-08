@@ -60,8 +60,22 @@
       <field name="mode">primary</field>
       <field name="arch" type="xml">
         <field name="name" position="before">
-          <field name="reference" />
+          <field name="display_name" />
         </field>
+      </field>
+    </record>
+
+    <!-- Search view -->
+    <record model="ir.ui.view" id="copy_search_view">
+      <field name="name">copy.search</field>
+      <field name="model">library.copy</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="display_name" />
+          <filter name="only_available" string="Only Available" domain="[('book_state' ,'=','available')]" />
+          <filter name="only_rented" string="Only Rented" domain=" [('book_state' ,'=', 'rented')]" />
+          <filter name="only_lost" string="Only Lost" domain="[('book_state' ,'=', 'lost')]" />
+        </search>
       </field>
     </record>
   </data>

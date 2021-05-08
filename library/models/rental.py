@@ -8,7 +8,7 @@ class Rental(models.Model):
     customer_id = fields.Many2one('res.partner',
                                   'rental_ids',
                                   domain=[('partner_type', '=', 'customer')])
-    copy_id = fields.Many2one('library.copy', 'rental_ids')
+    copy_id = fields.Many2one('library.copy', 'rental_ids', ondelete='cascade')
     rental_date = fields.Date(default=fields.Date.today())
     return_date = fields.Date(default=fields.Date.today())
     planned_return_date = fields.Date(default=fields.Date.today())

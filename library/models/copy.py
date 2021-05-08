@@ -31,6 +31,14 @@ class Copy(models.Model):
     publisher_id = fields.Many2one(related='book_id.publisher_id',
                                    string="Publisher", readonly=True)
 
+    display_name = fields.Char(compute='_compute_display_name', store=True)
+
+    @api.depends('name', 'reference')
+    def _compute_display_name(self):
+        for r in self:
+            if r.name and r.reference:
+                r.display_name = r.name+' '+r.reference
+
     @api.depends('rental_ids')
     def _compute_readers_count(self):
         for r in self:
