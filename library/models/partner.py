@@ -20,21 +20,20 @@ class Partner(models.Model):
 
     @api.model
     def _cron_check_date(self):
-        # today = fields.Date.today()
-        rental_expired = self.rental_ids.search([])
-        # '&', ,
-        # ('state', '=', 'rented')
-                #  ('return_date', '<', today)
+        today = fields.Date.today()
+        rental_expired = self.rental_ids.search(['&',
+                                                 ('state', '=', 'rented'),
+                                                 ('return_date', '<', today)])
+
         for rental in rental_expired:
             # Send mail
             context = {
                 'partner_name': rental.customer_id.name,
                 'partner_email': rental.customer_id.email,
                 'book_name': rental.book_id.name,
+                'book_reference': rental.copy_id.reference,
                 'return_date': rental.return_date
             }
             logging.error(rental.customer_id.name)
-            # template_id = self.env['ir.model.data'].get_object('library', 'rental_notification_template')
-            #     .browse(template_id) \
-            #     .send_mail(rental.customer_id.id)
-                # .with_context(context) \
+            template_id = self.env.ref('library.rental_notification_template')
+            template_id.with_context(context).send_mail(rental.customer_id.id)

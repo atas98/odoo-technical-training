@@ -44,7 +44,7 @@
 - [x] - Inherit product.product and res.partner
 - [x] - Create library.price model
 - [x] - Link library.payment to res.partner
-- [ ] - Notify clients about payments (email)
+- [x] - Notify clients about payments (email)
 
 ### Wizard
 - [x] - Create smart button for library.copy (readers_count)
@@ -61,5 +61,4 @@
 
 
 # FIXME
-- **Library:** Email template
 - **Library:** Copy.form creates two records instead of one
