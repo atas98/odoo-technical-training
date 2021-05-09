@@ -1,0 +1,46 @@
+<odoo>
+  <data>
+    <template id="website_books">
+      <t t-call="website.layout">
+        <t t-set="title">Books</t>
+        <div class="oe_structure" />
+        <div class="oe_structure">
+          <div class="container">
+            <h2 style="text-align: center; margin=2em;">Books</h2>
+            <div t-foreach="books" t-as="book">
+              <div class="row">
+                <div class="container-fluid border shadow-sm rounded" style="padding: 2em">
+                  <div class="panel-heading">
+                    <h4 class="o_default_snippet_text">
+                      <a t-attf-href="/library/books/{{ slug(book) }}">
+                        <t t-esc="book.name" />
+                      </a>
+                    </h4>
+                  </div>
+                  <div class="panel-info">
+                    <p class="text-info">
+                      <span>Authors: </span>
+                      <t t-foreach="book.author_ids" t-as="author">
+                        <t t-esc="author.name" />
+                      </t>
+                      <br />
+                      <span>ISBN: </span>
+                      <t t-esc="book.isbn" />
+                      <br />
+                      <span>Reference: </span>
+                      <small class="text-muted align-bottom">
+                        <t t-esc="book.reference" />
+                      </small>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <br />
+            </div>
+          </div>
+          <hr />
+        </div>
+      </t>
+    </template>
+  </data>
+</odoo>

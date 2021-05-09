@@ -54,10 +54,10 @@
 - [x] - Create report for res.partner
 
 ### Website
-- [ ] - Add books page with book list
-- [ ] - Create form for renting book
-- [ ] - Create fallback form for rented books
-- [ ] - Set access rule for logged users only
+- [x] - Add books page with book list
+- [x] - Create form for renting book
+- [x] - Create fallback form for rented books
+- [x] - Set access rule for logged users only
 
 
 # FIXME

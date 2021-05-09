@@ -1,0 +1,46 @@
+<odoo>
+  <data>
+    <template id="website_rent_confirm">
+      <t t-call="website.layout">
+        <t t-set="title">Confirm your rental</t>
+        <div class="oe_structure" />
+        <div class="oe_structure">
+          <div class="container">
+            <h2 style="text-align: center; margin=2em;">Are you sure, you want to rent this book?</h2>
+            <br />
+            <div class="border border-primary" style="padding: 2em;">
+              <p class="lead">
+                <span class="font-weight-bold">Title: </span>
+                <span t-field="book.name" />
+                <br />
+                <span class="font-weight-bold">Authors: </span>
+                <t t-foreach="book.author_ids" t-as="author">
+                  <span t-field="author.name" />
+                </t>
+                <br />
+                <span class="font-weight-bold">ISBN: </span>
+                <span t-field="book.isbn" />
+                <br />
+                <span class="font-weight-bold">Reference: </span>
+                <span t-field="book.reference" />
+                <br />
+                <span class="font-weight-bold">Publisher: </span>
+                <span t-field="book.publisher_id.name"/>
+                <br />
+              </p>
+              <div class="row">
+                <a class="btn btn-primary" style="margin-right: 1em" t-attf-href="/library/books/{{ slug(book) }}/confirmed">
+                  Confirm
+                </a>
+                <a class="btn btn-secondary" t-attf-href="/library/books/">
+                  Cancel
+                </a>
+              </div>
+            </div>
+            <hr />
+          </div>
+        </div>
+      </t>
+    </template>
+  </data>
+</odoo>

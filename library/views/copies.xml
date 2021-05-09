@@ -61,6 +61,7 @@
       <field name="arch" type="xml">
         <field name="name" position="before">
           <field name="display_name" />
+          <field name="book_state" />
         </field>
       </field>
     </record>
