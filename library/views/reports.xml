@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <data>
-    <record id="report_session" model="ir.actions.report">
-      <field name="name">Customer Rentals Report</field>
-      <field name="model">res.partner</field>
-      <field name="report_type">qweb-pdf</field>
-      <field name="report_name">library.report_rental_view</field>
-      <field name="report_file">library.report_rental</field>
-      <field name="binding_model_id" ref="model_res_partner" />
-      <field name="binding_type">report</field>
-    </record>
-
     <template id="report_rental_view">
       <t t-call="web.html_container">
         <t t-call="web.external_layout">
@@ -72,5 +62,15 @@
         </t>
       </t>
     </template>
+
+    <record id="report_session" model="ir.actions.report">
+      <field name="name">Customer Rentals Report</field>
+      <field name="model">res.partner</field>
+      <field name="report_type">qweb-pdf</field>
+      <field name="report_name">library.report_rental_view</field>
+      <field name="report_file">library.report_rental</field>
+      <field name="binding_model_id" ref="model_res_partner" />
+      <field name="binding_type">report</field>
+    </record>
   </data>
 </odoo>

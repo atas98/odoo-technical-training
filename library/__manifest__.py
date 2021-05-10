@@ -34,13 +34,14 @@
         "wizard/wizard.xml",
         'views/reports.xml',
         "views/menuitems.xml",
-        "data/price_data.xml",
-        "data/partner_data.xml",
         "templates/payment_notification.xml",
         "templates/website_book_list.xml",
         "templates/website_rent_confirm.xml",
         "templates/website_rent_complete.xml",
-        "templates/website_already_rented.xml"
+        "templates/website_already_rented.xml",
+        "data/website_menu.xml",
+        "data/price_data.xml",
+        "data/partner_data.xml"
     ],
     # only loaded in demonstration mode
     'demo':        [],

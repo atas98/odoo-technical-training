@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <data>
-    <!-- actions opening views on models -->
-    <record id="library_copies_act" model="ir.actions.act_window">
-      <field name="name">Copies</field>
-      <field name="res_model">library.copy</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-
     <!-- Form view -->
     <record model="ir.ui.view" id="copy_form_view">
       <field name="name">copy.form</field>
@@ -78,6 +71,13 @@
           <filter name="only_lost" string="Only Lost" domain="[('book_state' ,'=', 'lost')]" />
         </search>
       </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record id="library_copies_act" model="ir.actions.act_window">
+      <field name="name">Copies</field>
+      <field name="res_model">library.copy</field>
+      <field name="view_mode">tree,form</field>
     </record>
   </data>
 </odoo>

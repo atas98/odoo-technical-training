@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <data>
-    <!-- actions opening views on models -->
-    <record id="library_rentals_act" model="ir.actions.act_window">
-      <field name="name">Rental</field>
-      <field name="res_model">library.rental</field>
-      <field name="view_mode">tree,form,search</field>
-    </record>
-
     <record model="ir.ui.view" id="rental_form_view">
       <field name="name">rental.form</field>
       <field name="model">library.rental</field>
@@ -79,6 +72,13 @@
           <field name="book_id" />
         </search>
       </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record id="library_rentals_act" model="ir.actions.act_window">
+      <field name="name">Rental</field>
+      <field name="res_model">library.rental</field>
+      <field name="view_mode">tree,form,search</field>
     </record>
   </data>
 </odoo>

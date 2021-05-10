@@ -59,6 +59,7 @@
 - [x] - Create fallback form for rented books
 - [x] - Set access rule for logged users only
 
-
-# FIXME
-- **Library:** Copy.form creates two records instead of one
+### Misc
+- [ ] - Add menus to website
+- [ ] - Add access groups to library model
+- [ ] - Fix copy form view

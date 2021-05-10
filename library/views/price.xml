@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
-        <!-- actions opening views on models -->
-        <record id="library_price_act" model="ir.actions.act_window">
-            <field name="name">Price</field>
-            <field name="res_model">library.price</field>
-            <field name="view_mode">tree,form</field>
-        </record>
+  <data>
+    <record model="ir.ui.view" id="price_form_view">
+      <field name="name">price.form</field>
+      <field name="model">library.price</field>
+      <field name="arch" type="xml">
+        <form string="Add new price">
+          <sheet>
+            <group>
+              <field name="name" />
+              <field name="duration" attrs="{'invisible': [('type', '=', 'one')]}" />
+              <field name="price" />
+              <field name="type" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
 
-        <record model="ir.ui.view" id="price_form_view">
-            <field name="name">price.form</field>
-            <field name="model">library.price</field>
-            <field name="arch" type="xml">
-                <form string="Add new price">
-                    <sheet>
-                        <group>
-                            <field name="name" />
-                            <field name="duration" attrs="{'invisible': [('type', '=', 'one')]}" />
-                            <field name="price" />
-                            <field name="type" />
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+    <!-- Tree view -->
+    <record model="ir.ui.view" id="price_tree_view">
+      <field name="name">price.tree</field>
+      <field name="model">library.price</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="duration" />
+          <field name="price" />
+          <field name="type" />
+        </tree>
+      </field>
+    </record>
 
-        <!-- Tree view -->
-        <record model="ir.ui.view" id="price_tree_view">
-            <field name="name">price.tree</field>
-            <field name="model">library.price</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="name" />
-                    <field name="duration" />
-                    <field name="price" />
-                    <field name="type" />
-                </tree>
-            </field>
-        </record>
-    </data>
+
+    <!-- actions opening views on models -->
+    <record id="library_price_act" model="ir.actions.act_window">
+      <field name="name">Price</field>
+      <field name="res_model">library.price</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
 </odoo>

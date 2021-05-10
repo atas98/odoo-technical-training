@@ -1,12 +1,5 @@
 <odoo>
   <data>
-    <!-- actions opening views on models -->
-    <record id="openacademy_courses_act" model="ir.actions.act_window">
-      <field name="name">Courses</field>
-      <field name="res_model">openacademy.course</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-
     <record model="ir.ui.view" id="course_form_view">
       <field name="name">course.form</field>
       <field name="model">openacademy.course</field>
@@ -44,6 +37,13 @@
           <field name="responsible_id" />
         </tree>
       </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record id="openacademy_courses_act" model="ir.actions.act_window">
+      <field name="name">Courses</field>
+      <field name="res_model">openacademy.course</field>
+      <field name="view_mode">tree,form</field>
     </record>
   </data>
 </odoo>

@@ -1,86 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <data>
-    <!-- actions opening views on models -->
-    <record
-        model="ir.actions.act_window"
-        id="openacademy_sessions_act">
-      <field name="name">Sessions</field>
-      <field name="res_model">openacademy.session</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-
     <!-- Form view -->
-    <record
-        model="ir.ui.view"
-        id="session_form_view">
+    <record model="ir.ui.view" id="session_form_view">
       <field name="name">session.form</field>
       <field name="model">openacademy.session</field>
-      <field
-          name="arch"
-          type="xml">
+      <field name="arch" type="xml">
         <form string="Add session">
           <header>
-            <button
-                string="Confirm"
-                type="object"
-                name="action_confirm"
-                states="draft"
-                class="oe_highlight"
-                groups="openacademy.group_maesters" />
-            <button
-                string="Mark as done"
-                type="object"
-                name="action_done"
-                states="confirmed"
-                class="oe_highlight"
-                groups="openacademy.group_maesters" />
-            <button
-                string="Reset to draft"
-                type="object"
-                name="action_draft"
-                states="confirmed,done"
-                groups="openacademy.group_maesters" />
-            <button
-                string="Invoice teacher"
-                type="object"
-                name="invoice_teacher"
-                attrs="{'invisible': [('is_paid', '=', True)]}" />
-            <field
-                name="state"
-                widget="statusbar"
-                clickable="False"
-                groups="openacademy.group_maesters" />
+            <button string="Confirm" type="object" name="action_confirm" states="draft" class="oe_highlight" groups="openacademy.group_maesters" />
+            <button string="Mark as done" type="object" name="action_done" states="confirmed" class="oe_highlight" groups="openacademy.group_maesters" />
+            <button string="Reset to draft" type="object" name="action_draft" states="confirmed,done" groups="openacademy.group_maesters" />
+            <button string="Invoice teacher" type="object" name="invoice_teacher" attrs="{'invisible': [('is_paid', '=', True)]}" />
+            <field name="state" widget="statusbar" clickable="False" groups="openacademy.group_maesters" />
           </header>
 
           <group string="General">
-            <field
-                name="name"
-                string="Name" />
-            <field
-                name="instructor_id"
-                string="Instructor"
-                domain="['&amp;', ('level', '>=', level_boundary), ('instructor', '=', True)]" />
-            <field
-                name="course_id"
-                string="Course" />
-            <field
-                name="level"
-                string="Course level" />
-            <field
-                name="level_boundary"
-                invisible="True" />
-            <field
-                name="seats"
-                string="Seats" />
-            <field
-                name="is_paid"
-                string="Is paid"
-                invisible="True" />
-            <field
-                name="attendees_count"
-                string="Attendees count"
-                invisible="True" />
+            <field name="name" string="Name" />
+            <field name="instructor_id" string="Instructor" domain="['&amp;', ('level', '>=', level_boundary), ('instructor', '=', True)]" />
+            <field name="course_id" string="Course" />
+            <field name="level" string="Course level" />
+            <field name="level_boundary" invisible="True" />
+            <field name="seats" string="Seats" />
+            <field name="is_paid" string="Is paid" invisible="True" />
+            <field name="attendees_count" string="Attendees count" invisible="True" />
           </group>
 
           <separator />
@@ -88,31 +31,19 @@
           <notebook>
             <page string="Date">
               <group>
-                <field
-                    name="start_date"
-                    string="Start Date" />
-                <field
-                    name="duration"
-                    string="Duration" />
+                <field name="start_date" string="Start Date" />
+                <field name="duration" string="Duration" />
               </group>
             </page>
 
-            <page
-                string="Attendees"
-                groups="openacademy.group_maesters">
-              <field
-                  name="attendee_ids"
-                  domain="[('level', '>=', level_boundary)]" />
+            <page string="Attendees" groups="openacademy.group_maesters">
+              <field name="attendee_ids" domain="[('level', '>=', level_boundary)]" />
             </page>
           </notebook>
 
           <div class="oe_chatter">
-            <field
-                name="message_follower_ids"
-                widget="mail_followers" />
-            <field
-                name="message_ids"
-                widget="mail_thread" />
+            <field name="message_follower_ids" widget="mail_followers" />
+            <field name="message_ids" widget="mail_thread" />
           </div>
         </form>
       </field>
@@ -120,30 +51,29 @@
 
 
     <!-- Tree view -->
-    <record
-        model="ir.ui.view"
-        id="session_tree_view">
+    <record model="ir.ui.view" id="session_tree_view">
       <field name="name">session.tree</field>
       <field name="model">openacademy.session</field>
-      <field
-          name="arch"
-          type="xml">
+      <field name="arch" type="xml">
         <tree>
           <field name="name" />
-          <field
-              name="state"
-              groups="openacademy.group_maesters" />
+          <field name="state" groups="openacademy.group_maesters" />
           <field name="instructor_id" />
           <field name="level" />
           <field name="start_date" />
           <field name="end_date" />
           <field name="course_id" />
           <field name="seats" />
-          <field
-              name="taken_seats"
-              widget="progressbar" />
+          <field name="taken_seats" widget="progressbar" />
         </tree>
       </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="openacademy_sessions_act">
+      <field name="name">Sessions</field>
+      <field name="res_model">openacademy.session</field>
+      <field name="view_mode">tree,form</field>
     </record>
   </data>
 </odoo>
