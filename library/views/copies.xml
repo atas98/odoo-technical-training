@@ -5,16 +5,12 @@
     <record model="ir.ui.view" id="copy_form_view">
       <field name="name">copy.form</field>
       <field name="model">library.copy</field>
-      <field name="inherit_id" ref="library.book_form_view" />
-      <field name="mode">primary</field>
       <field name="arch" type="xml">
-        <xpath expr="//sheet" position="before">
+        <form string="Add copy">
           <header>
             <field name="book_state" widget="statusbar" clickable="False" />
           </header>
-        </xpath>
-        <xpath expr="//sheet/group" position="before">
-          <group>
+          <sheet>
             <div class="button_box">
               <button class="oe_stat_button" type="object" name="open_readers" icon="fa-users">
                 <div class="o_stat_info">
@@ -24,24 +20,21 @@
                 </div>
               </button>
             </div>
-          </group>
-        </xpath>
-        <field name="is_book" position="attributes">
-          <attribute name="invisible">True</attribute>
-        </field>
-        <field name="copy_ids" position="attributes">
-          <attribute name="invisible">True</attribute>
-        </field>
-        <field name="name" position="attributes">
-          <attribute name="invisible">True</attribute>
-        </field>
-        <field name="name" position="before">
-          <field name="book_id" string='Title' />
-        </field>
-        <field name="publisher_id" position="after">
-          <field name="reference" />
-          <field name="rental_ids" />
-        </field>
+            <group col="2">
+              <group>
+                <field name="book_id" string='Title' />
+                <field name="author_ids" string="Authors" widget="many2many_tags" />
+                <field name="publisher_id" string="Publisher" />
+              </group>
+              <group>
+                <field name="reference" />
+                <field name="isbn" />
+                <field name="edition_date" />
+              </group>
+              <field name="rental_ids" string="Rentals" colspan="2" />
+            </group>
+          </sheet>
+        </form>
       </field>
     </record>
 

@@ -9,7 +9,7 @@
       <field name="body_html">
         <![CDATA[
          <p>Dear ${(ctx.partner_name)},<br/><br/>
-            Good job, you should've return the book ${ctx.book_name} (Reference: ${ctx.book_reference})on ${ctx.return_date}.<br/></p>
+            Good job, you should've return the book ${ctx.book_name} (Reference: ${ctx.book_reference}) on ${ctx.return_date}.<br/></p>
             Regards, Totally Official Brussel Library<br/>
             ]]>
       </field>

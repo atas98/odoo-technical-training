@@ -10,19 +10,19 @@
         <xpath expr="//form" position="replace">
           <form string="Add new book">
             <sheet>
-              <group>
-                <field name="is_book" />
-                <field name="name" string="Title" />
-                <field name="author_ids" string="Authors" domain="[('partner_type', '=', 'author')]" widget="many2many_tags" context="{'form_view_ref': 'library.partner_form_view'}" />
+              <group cols="2">
+                <group>
+                  <field name="is_book" />
+                  <field name="name" string="Title" />
+                  <field name="author_ids" string="Authors" domain="[('partner_type', '=', 'author')]" widget="many2many_tags" context="{'form_view_ref': 'library.partner_form_view'}" />
+                </group>
+                <group>
+                  <field name="edition_date" />
+                  <field name="isbn" />
+                  <field name="publisher_id" string="Publisher" domain="[('partner_type', '=', 'publisher')]" context="{'form_view_ref': 'library.partner_form_view'}" />
+                </group>
               </group>
-              <group>
-                <field name="edition_date" />
-                <field name="isbn" />
-                <field name="publisher_id" string="Publisher" domain="[('partner_type', '=', 'publisher')]" context="{'form_view_ref': 'library.partner_form_view'}" />
-              </group>
-              <group>
-                <field name="copy_ids" string="Copies" />
-              </group>
+              <field name="copy_ids" string="Copies" />
             </sheet>
           </form>
         </xpath>

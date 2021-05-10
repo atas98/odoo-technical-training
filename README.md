@@ -60,6 +60,6 @@
 - [x] - Set access rule for logged users only
 
 ### Misc
-- [ ] - Add menus to website
+- [x] - Add menus to website
 - [ ] - Add access groups to library model
-- [ ] - Fix copy form view
+- [x] - Fix copy form view
